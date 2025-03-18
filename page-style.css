@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(270deg, #ff7e5f, #feb47b, #00c6ff, #0072ff, #8e2de2, #4a00e0, #12c2e9, #c471ed, #f64f59);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  overflow-x: hidden; /* ✅ Side scrollbar hataya */
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Header, Footer, Navigation */
+header, .head-down, footer {
+  width: 100%;
+}
+
+header {
+  height: 10vh;
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head-down {
+  height: 8vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head-down a {
+  margin-right: 20px;
+  color: white;
+}
+
+footer {
+  height: 12vh;
+  background-color: #333333;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Page Content */
+.pagee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.pagex {
+  width: 60vw;
+  background-color: white;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Details */
+details {
+  padding: 10px;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+summary:hover {
+  color: #d35400;
+}
+
+.content {
+  padding-left: 15px;
+  margin-top: 3px;
+}
+
+div img {
+  height: 260px;
+  width: 180px;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+/* Books Display */
+.book-set {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;  /* ✅ Books ke beech ka gap */
+  padding: 20px;
+}
+
+.books {
+  width: 220px;
+  height: 290px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.book-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.books:hover .book-inner {
+  transform: rotateY(180deg);
+}
+
+.book-front, .book-back {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.book-front img {
+  width: 100%;
+  height: 100%;
+}
+
+.book-back {
+  background: black;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transform: rotateY(180deg);
+  padding: 10px;
+}
+
+/* Feedback Form */
+.feedback-container {
+  background: white;
+  padding: 20px;
+  width: 90%; /* ✅ Responsive width */
+  max-width: 350px; /* ✅ Mobile optimized */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+button {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.form-bro {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.feed {
+  margin: 10px;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .pagex {
+    width: 90vw; /* ✅ Mobile ke liye width badhayi */
+  }
+
+  .book-set {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .books {
+    width: 80%;
+    max-width: 300px;
+  }
+}
