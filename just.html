@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modern Snake Path Animation</title>
+  <style>
+    body {
+      height: 250vh;
+      margin: 0;
+      background: #181d1c;
+    }
+    svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bg-path {
+      stroke: #c7c7c7;
+      stroke-width: 40;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .color-path {
+      stroke: url(#modernGradient);
+      stroke-width: 40;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke-dashoffset 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 400 1000">
+    <defs>
+      <!-- Modern blue-purple gradient -->
+      <linearGradient id="modernGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#36d1c4"/>
+        <stop offset="100%" stop-color="#5b86e5"/>
+      </linearGradient>
+    </defs>
+    <!-- Rectangular S-shaped path (zigzag) -->
+    <path id="snakePath" class="bg-path" d="M 80 100 L 320 100 L 320 300 L 80 300 L 80 500 L 320 500 L 320 700 L 80 700 L 80 900 L 320 900" />
+    <path id="colorPath" class="color-path" d="M 80 100 L 320 100 L 320 300 L 80 300 L 80 500 L 320 500 L 320 700 L 80 700 L 80 900 L 320 900" />
+  </svg>
+  <script>
+    const path = document.getElementById('snakePath');
+    const colorPath = document.getElementById('colorPath');
+    const pathLength = path.getTotalLength();
+
+    colorPath.setAttribute('stroke-dasharray', pathLength);
+    colorPath.setAttribute('stroke-dashoffset', pathLength);
+
+    window.addEventListener('scroll', () => {
+      const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const drawLength = pathLength * scrollPercent;
+      colorPath.setAttribute('stroke-dashoffset', pathLength - drawLength);
+    });
+  </script>
+</body>
+</html>
